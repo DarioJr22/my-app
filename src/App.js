@@ -1,7 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import UserProfile from './heading/UserProfile';
+import React,{useState} from 'react'
+import MyButton from './button/MyButton';
+import Profile from './heading/Profile';
+import List from './list/List';
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+  let logData = true 
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,9 +29,24 @@ function App() {
         >
           Learn React
         </a>
+        {logData ? (<MyButton />):( <UserProfile />)}
+        <List/>
       </header>
+      <section>
+      <MyButton count={count} onClick={handleClick}  />
+      <MyButton count={count} onClick={handleClick}  />
+      </section>
     </div>
   );
+
+function MyButton({ count, onClick }) {
+  return (
+    <button onClick={onClick}>
+      Clicked {count} times
+    </button>
+  );
+}
+
 }
 
 export default App;
